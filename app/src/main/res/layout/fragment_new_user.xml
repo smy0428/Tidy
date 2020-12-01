@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary">
+    <TextView
+        android:id="@+id/hello"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="60sp"
+        android:textColor="@color/white"
+        android:typeface="serif"
+        android:text="Hello">
+    </TextView>
+    <ImageView
+        android:id="@+id/join_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/hello"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/new_btn"
+        android:src="@drawable/ic_join"
+        android:contentDescription="join button">
+    </ImageView>
+
+    <ImageView
+        android:id="@+id/new_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/hello"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/join_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_plus_60dp"
+        android:contentDescription="new button">
+    </ImageView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/join_btn"
+        app:layout_constraintStart_toStartOf="@id/join_btn"
+        app:layout_constraintEnd_toEndOf="@id/join_btn"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:typeface="serif"
+        android:layout_marginTop="10dp"
+        android:text="join">
+    </TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/new_btn"
+        app:layout_constraintStart_toStartOf="@id/new_btn"
+        app:layout_constraintEnd_toEndOf="@id/new_btn"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:typeface="serif"
+        android:layout_marginTop="10dp"
+        android:text="new">
+    </TextView>
+</androidx.constraintlayout.widget.ConstraintLayout>

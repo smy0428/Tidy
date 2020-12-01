@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "556671261453",
+    "firebase_url": "https://tidy-a8fc3.firebaseio.com",
+    "project_id": "tidy-a8fc3",
+    "storage_bucket": "tidy-a8fc3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:556671261453:android:45385bd0ffcc261ce96e44",
+        "android_client_info": {
+          "package_name": "com.utap.tidy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "556671261453-bcff742f8ri5ko1nk9lofme9heh6i43o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.utap.tidy",
+            "certificate_hash": "dafba3e73f867b53dd88f0b9b2eada2ccf0f7202"
+          }
+        },
+        {
+          "client_id": "556671261453-ufl1tqfhaqqfkd903kptj7bc5d3btpdb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfhLYkGr-Ue_BmU1CU9mOZhItHRKx7_sI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "556671261453-ufl1tqfhaqqfkd903kptj7bc5d3btpdb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

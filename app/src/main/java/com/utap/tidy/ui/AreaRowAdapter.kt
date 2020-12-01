@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.utap.tidy.R
-import com.utap.tidy.api.CleanJob
+import com.utap.tidy.data.CleanJob
 
 /**
  * Created by siyuan on 11/30/2020

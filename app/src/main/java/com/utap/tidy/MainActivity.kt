@@ -1,18 +1,32 @@
 package com.utap.tidy
 
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.utap.tidy.ui.HomeFragment
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.ActionBar
 import android.view.View
+import android.widget.EditText
+import androidx.activity.viewModels
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.FragmentTransaction
-import com.beardedhen.androidbootstrap.TypefaceProvider
+import androidx.lifecycle.Observer
+import com.utap.tidy.auth.AuthInitActivity
+import com.utap.tidy.auth.NewUserFragment
+import com.utap.tidy.ui.MainViewModel
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var homeFragment: HomeFragment
+    private val viewModel: MainViewModel by viewModels()
+
+    companion object {
+        const val TAG = "Tidy"
+        private const val rcSignIn = 28
+    }
 
     // An Android nightmare
     // https://stackoverflow.com/questions/1109022/close-hide-the-android-soft-keyboard
@@ -34,6 +48,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initHomeFragment() {
+        Log.d(TAG, "XXX, initHomeFragment call started")
         supportFragmentManager
             .beginTransaction()
             // No back stack for home
@@ -43,19 +58,38 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
+    private fun initUserUI() {
+        viewModel.observeFirebaseAuthLiveData().observe(this, Observer {
+            if( it == null ) {
+                Log.d(TAG, "XXX, No one is signed in")
+            } else {
+                Log.d(TAG, "XXX, ${it.displayName} ${it.email} ${it.uid} signed in")
+            }
+        })
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // Android-Bootstrap
-        TypefaceProvider.registerDefaultIconSets();
-
         setContentView(R.layout.activity_main)
+
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.let{
             initActionBar(it)
         }
+
+        initUserUI()
+        val authInitIntent = Intent(this, AuthInitActivity::class.java)
+        //startActivity(authInitIntent)
+        startActivityForResult(authInitIntent, rcSignIn)
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
         homeFragment = HomeFragment.newInstance()
+        Log.d(TAG, "XXX, homeFragment inited")
         initHomeFragment()
     }
 }

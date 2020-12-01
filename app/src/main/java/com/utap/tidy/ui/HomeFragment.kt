@@ -5,19 +5,25 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.utap.tidy.R
+import com.utap.tidy.auth.NewUserFragment
 
 class HomeFragment: Fragment() {
     private val viewModel: MainViewModel by activityViewModels()
     private lateinit var adapter: AreaRowAdapter
+    private val homeFragTag = "homeFragTag"
     companion object {
+        const val TAG = "HomeFragment"
         fun newInstance(): HomeFragment {
             return HomeFragment()
         }
@@ -41,6 +47,24 @@ class HomeFragment: Fragment() {
         rv.addItemDecoration(itemDecor)
     }
 
+    private fun initTitleObservers() {
+        val titleTV = (activity as AppCompatActivity).findViewById<TextView>(R.id.actionTitle)
+        viewModel.observeTitle().observe(viewLifecycleOwner, Observer {
+            titleTV.text = it
+        })
+    }
+
+    private fun actionNewUser() {
+        val newUserFragment = NewUserFragment.newInstance()
+        Log.d(TAG, "XXX, transaction to NewUserFragment")
+        parentFragmentManager
+                .beginTransaction()
+                .addToBackStack(homeFragTag)
+                .add(R.id.main_frame, newUserFragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .commit()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -48,11 +72,17 @@ class HomeFragment: Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_rv, container, false)
         initAdapter(root)
+        initTitleObservers()
+
+        if(!viewModel.newUserCheck()) {
+            actionNewUser()
+        }
 
         viewModel.observeAreaCleanJobs().observe(viewLifecycleOwner, Observer {
             Log.d("XXX", "HomeFragment is observing AreaCleanJobs")
             adapter.submitList(it)
         })
+
         return root
     }
 }
