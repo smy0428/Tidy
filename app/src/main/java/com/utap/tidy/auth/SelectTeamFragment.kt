@@ -39,6 +39,7 @@ class SelectTeamFragment : Fragment() {
                 .setOnClickListener {
                     viewModel.joinTeam()
                     setTitle("Area")
+                    Toast.makeText(context, "You have joined ${viewModel.getTeamName()}", Toast.LENGTH_SHORT).show()
                     parentFragmentManager.popBackStack(viewModel.homeFragTag, FragmentManager.POP_BACK_STACK_INCLUSIVE)
                 }
 

@@ -39,6 +39,7 @@ class NewNameFragment : Fragment() {
                     } else {
                         viewModel.initNewTeam(teamName)
                         setTitle("Area")
+                        Toast.makeText(context, "$teamName has been created", Toast.LENGTH_SHORT).show()
                         parentFragmentManager.popBackStack(viewModel.homeFragTag, FragmentManager.POP_BACK_STACK_INCLUSIVE)
                     }
                 }

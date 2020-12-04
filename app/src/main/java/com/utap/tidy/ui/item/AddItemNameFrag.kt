@@ -21,7 +21,7 @@ class AddItemNameFrag: Fragment() {
             "Clean toilet",
             "Change towels",
             "Shower",
-            "Clean Mirrors",
+            "Clean mirrors",
             "Disinfect floor",
             "Disinfect bathtub"
         )

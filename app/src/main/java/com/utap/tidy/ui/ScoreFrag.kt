@@ -52,39 +52,65 @@ class ScoreFrag: Fragment() {
             if (scoreFetchState == 1) {
                 Log.d(TAG, "XXX, start to observe score")
                 val scoreDataMap = viewModel.getScoreSimpleMap()
-                val barDataSets = ArrayList<BarDataSet>()
-                var i = 0
-                for ((key, value) in scoreDataMap) {
-                    Log.d(TAG, "XXX, $key got $value scores")
-                    val entries = ArrayList<BarEntry>()
-                    entries.add(BarEntry(i.toFloat(), value.toFloat()))
-                    val set = BarDataSet(entries, key)
-                    set.color = colors[i % colors.size]
-                    barDataSets.add(set)
-                    i += 1
+                val numPersons = scoreDataMap.size
+                if (numPersons > 1) {
+                    val barDataSets = ArrayList<BarDataSet>()
+                    var i = 0
+                    for ((key, value) in scoreDataMap) {
+                        Log.d(TAG, "XXX, $key got $value scores")
+                        val entries = ArrayList<BarEntry>()
+                        entries.add(BarEntry(i.toFloat(), value.toFloat()))
+                        val set = BarDataSet(entries, key)
+                        set.color = colors[i % colors.size]
+                        barDataSets.add(set)
+                        i += 1
+                    }
+                    val data = BarData(barDataSets as List<IBarDataSet>?)
+                    val groupSpace = 0.05f;
+                    val barSpace = 0.3f
+                    val barWidth = 0.2f
+                    data.barWidth = barWidth
+                    barChart.data = data
+                    barChart.groupBars(0f, groupSpace, barSpace)
+                    data.setValueTextSize(10.5f)
+                    data.setValueTextColor(Color.WHITE)
+                    barChart.axisLeft.textColor = Color.WHITE
+                    barChart.legend.textColor = Color.WHITE
+                    barChart.axisRight.isEnabled = false
+                    barChart.legend.formSize = 20f
+                    barChart.legend.formToTextSpace = 10f
+                    barChart.xAxis.isEnabled = false
+                    barChart.description.isEnabled = false
+                    barChart.setExtraOffsets(0f,20f,0f,20f)
+                    barChart.legend.yOffset = 10f
+                    barChart.animateXY(2000, 2000)
+                    barChart.invalidate()
+                } else if (numPersons == 1){
+                    for ((key, value) in scoreDataMap) {
+                        Log.d(TAG, "XXX, $key got $value scores")
+                        val entries = ArrayList<BarEntry>()
+                        entries.add(BarEntry(0f, value.toFloat()))
+                        val set = BarDataSet(entries, key)
+                        set.color = colors[2]
+                        val data: BarData = BarData(set)
+                        data.barWidth = 0.2f
+                        data.setValueTextSize(10.5f)
+                        data.setValueTextColor(Color.WHITE)
+                        barChart.axisLeft.textColor = Color.WHITE
+                        barChart.legend.textColor = Color.WHITE
+                        barChart.axisRight.isEnabled = false
+                        barChart.legend.formSize = 20f
+                        barChart.legend.formToTextSpace = 10f
+                        barChart.xAxis.isEnabled = false
+                        barChart.description.isEnabled = false
+                        barChart.setExtraOffsets(0f,20f,0f,20f)
+                        barChart.legend.yOffset = 10f
+                        barChart.data = data
+                        barChart.invalidate()
+                        barChart.animateXY(2000, 2000)
+                        barChart.invalidate()
+                    }
                 }
-                val data = BarData(barDataSets as List<IBarDataSet>?)
-                val groupSpace = 0.05f;
-                val barSpace = 0.3f
-                val barWidth = 0.2f
-                data.barWidth = barWidth
-                barChart.data = data
-                data.setValueTextSize(10.5f)
-                data.setValueTextColor(Color.WHITE)
-                barChart.axisLeft.textColor = Color.WHITE
-                barChart.legend.textColor = Color.WHITE
-                barChart.groupBars(0f, groupSpace, barSpace)
-                barChart.axisRight.isEnabled = false
-                //barChart.legend.textSize = 12f
-                barChart.legend.formSize = 20f
-                barChart.legend.formToTextSpace = 10f
-                barChart.xAxis.isEnabled = false
-                barChart.description.isEnabled = false
-                barChart.setExtraOffsets(0f,20f,0f,20f)
-                barChart.legend.yOffset = 10f
-                barChart.legend.direction = Legend.LegendDirection.LEFT_TO_RIGHT
-                barChart.animateXY(2000, 2000)
-                barChart.invalidate()
             }
         })
         viewModel.clearScoreFetchState()
