@@ -9,59 +9,85 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/newBtn"
+        app:layout_constraintBottom_toBottomOf="@id/checkBtn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:textSize="60sp"
         android:textColor="@color/white"
         android:typeface="serif"
-        android:text="Hello">
+        android:text="Super!">
+    </TextView>
+    <TextView
+        android:id="@+id/jobTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/hello"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:typeface="serif"
+        android:text="you just cleaned bedroom">
+    </TextView>
+    <TextView
+        android:id="@+id/jobScores"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/jobTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:typeface="serif"
+        android:text="+30 points">
     </TextView>
     <ImageView
-        android:id="@+id/joinBtn"
+        android:id="@+id/closeBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/hello"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/newBtn"
-        android:src="@drawable/ic_join"
+        app:layout_constraintEnd_toStartOf="@id/checkBtn"
+        android:src="@drawable/ic_close_60dp"
         android:contentDescription="join button">
     </ImageView>
 
     <ImageView
-        android:id="@+id/newBtn"
+        android:id="@+id/checkBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/hello"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/joinBtn"
+        app:layout_constraintStart_toEndOf="@id/closeBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/ic_plus_60dp"
+        android:src="@drawable/ic_check_60dp"
         android:contentDescription="new button">
     </ImageView>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/joinBtn"
-        app:layout_constraintStart_toStartOf="@id/joinBtn"
-        app:layout_constraintEnd_toEndOf="@id/joinBtn"
-        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/closeBtn"
+        app:layout_constraintStart_toStartOf="@id/closeBtn"
+        app:layout_constraintEnd_toEndOf="@id/closeBtn"
+        android:textSize="20sp"
         android:textColor="@color/white"
         android:typeface="serif"
         android:layout_marginTop="10dp"
-        android:text="join team">
+        android:text="not yet">
     </TextView>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/newBtn"
-        app:layout_constraintStart_toStartOf="@id/newBtn"
-        app:layout_constraintEnd_toEndOf="@id/newBtn"
-        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/checkBtn"
+        app:layout_constraintStart_toStartOf="@id/checkBtn"
+        app:layout_constraintEnd_toEndOf="@id/checkBtn"
+        android:textSize="20sp"
         android:textColor="@color/white"
         android:typeface="serif"
         android:layout_marginTop="10dp"
-        android:text="new team">
+        android:text="done">
     </TextView>
 </androidx.constraintlayout.widget.ConstraintLayout>

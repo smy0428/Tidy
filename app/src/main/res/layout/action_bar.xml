@@ -3,7 +3,6 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
     <TextView
         android:id="@+id/actionTitle"
         android:layout_width="80dp"
@@ -19,7 +18,7 @@
         android:layout_width="0dp"
         android:minEms="16"
         android:layout_height="wrap_content"
-        android:layout_weight="3"
+        android:layout_weight="1"
         android:layout_margin="8dp"
         android:layout_gravity="end|center_vertical"
         android:hint="search"
@@ -27,14 +26,21 @@
         android:inputType="text"
         android:padding="8dp"
         android:visibility="invisible"/>
-
     <ImageView
+        android:id="@+id/searchBtn"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:id="@+id/actionAdd"
-        android:src="@drawable/ic_plus_20dp"
-        android:layout_marginEnd="5dp"
-        android:visibility="invisible"
+        android:src="@drawable/ic_check_20dp"
+        android:layout_marginEnd="10dp"
+        android:visibility="gone"
+        />
+
+    <ImageView
+        android:id="@+id/actionSignOut"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_join_20dp"
+        android:layout_marginEnd="10dp"
         />
 
 </LinearLayout>

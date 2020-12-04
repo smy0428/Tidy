@@ -1,0 +1,41 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/teamRow"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="?attr/selectableItemBackground"
+    android:padding="8dp"
+    android:orientation="horizontal">
+    <!-- Background attribute gives the whole layout the satisfying ripple
+    effect on selection -->
+
+    <TextView
+        android:id="@+id/nameTV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/timeTV"
+        android:layout_marginStart="5dp"
+        android:textSize="25sp"
+        android:textColor="@color/white"
+        android:typeface="serif"
+        android:text="name">
+    </TextView>
+    <TextView
+        android:id="@+id/timeTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/nameTV"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textSize="12sp"
+        android:textColor="@color/white"
+        android:typeface="serif"
+        android:textAlignment="viewEnd"
+        android:text="joined on 2020.Dec.12"
+        >
+    </TextView>
+</androidx.constraintlayout.widget.ConstraintLayout>

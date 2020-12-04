@@ -1,21 +1,18 @@
 package com.utap.tidy
 
-import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.utap.tidy.ui.HomeFragment
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.ActionBar
 import android.view.View
-import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import com.utap.tidy.auth.AuthInitActivity
-import com.utap.tidy.auth.NewUserFragment
+import com.utap.tidy.ui.HomeFragment
 import com.utap.tidy.ui.MainViewModel
 
 
@@ -89,7 +86,7 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         homeFragment = HomeFragment.newInstance()
-        Log.d(TAG, "XXX, homeFragment inited")
+        Log.d(TAG, "XXX, homeFragment initialized")
         initHomeFragment()
     }
 }

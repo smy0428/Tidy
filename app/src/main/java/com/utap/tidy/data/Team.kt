@@ -6,5 +6,7 @@ import com.google.firebase.firestore.ServerTimestamp
 data class Team(
         var name: String? = null,
         @ServerTimestamp
-        val timeStamp: Timestamp? = null
+        val timeStamp: Timestamp? = null,
+        var rowID: String? = null
 )
+

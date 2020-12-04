@@ -1,4 +1,4 @@
-package com.utap.tidy.ui
+package com.utap.tidy.ui.item
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.utap.tidy.MainActivity
 import com.utap.tidy.R
 import com.utap.tidy.data.CleanJob
+import com.utap.tidy.ui.MainViewModel
 import java.util.*
 
 /**
@@ -26,9 +27,9 @@ import java.util.*
 // title change somehow (String), under certain circumstance, we will have
 // to call notifyDataSetChanged()
 
-class AreaRowAdapter (private val viewModel: MainViewModel,
-                      private val finishArea: ()->Unit):
-        ListAdapter<CleanJob, AreaRowAdapter.ViewHolder>(CleanJobDiff()) {
+class ItemRowAdapter (private val viewModel: MainViewModel,
+                      private val finishItem: ()->Unit):
+        ListAdapter<CleanJob, ItemRowAdapter.ViewHolder>(CleanJobDiff()) {
     class CleanJobDiff: DiffUtil.ItemCallback<CleanJob>() {
 
         override fun areItemsTheSame(oldItem: CleanJob, newItem: CleanJob): Boolean {
@@ -45,7 +46,7 @@ class AreaRowAdapter (private val viewModel: MainViewModel,
 
     inner class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
-        private var completeRowLayout = view.findViewById<ConstraintLayout>(R.id.areaRow)
+        // private var completeRowLayout = view.findViewById<ConstraintLayout>(R.id.areaRow)
         private var timeGroupLayout = view.findViewById<LinearLayout>(R.id.timeGroup)
         private var titleTV = view.findViewById<TextView>(R.id.title)
         private var timeCountIV = view.findViewById<ImageView>(R.id.timeIV)
@@ -55,10 +56,12 @@ class AreaRowAdapter (private val viewModel: MainViewModel,
             // long click to finish
             timeGroupLayout.setOnLongClickListener {
                 // remember the position of clean job
-                viewModel.setAreaJobPos(adapterPosition)
-                finishArea()
+                viewModel.setItemJobPos(adapterPosition)
+                finishItem()
                 true
             }
+
+            /*
             // long click on textView to edit
             titleTV.setOnLongClickListener {
                 viewModel.setAreaJobPos(adapterPosition)
@@ -66,14 +69,13 @@ class AreaRowAdapter (private val viewModel: MainViewModel,
                 true
             }
 
-            // click on area row to open small items
+            // click on item row to open even small items
             completeRowLayout.setOnClickListener {
                 viewModel.setAreaJobPos(adapterPosition)
-                viewModel.setAreaID()
-                viewModel.setAreaTitle()
                 viewModel.activateOpenAreaState()
                 true
             }
+             */
         }
 
         private fun generateDueSentence(pastDays: Int, frequency: Int): String {
@@ -114,11 +116,11 @@ class AreaRowAdapter (private val viewModel: MainViewModel,
              */
 
             titleTV.text = item.jobTitle
-            Log.d("AreaRowAdapter", "XXX, bind name is ${item.jobTitle}")
+            Log.d("ItemRowAdapter", "XXX, bind name is ${item.jobTitle}")
             val freq = item.frequency!!
             val pastDays = calPastDays(item.lastUpdateTime!!.toDate())
             dueDayTV.text = generateDueSentence(pastDays, freq)
-            Log.d("AreaRowAdapter", "XXX, past day is $pastDays")
+            Log.d("ItemRowAdapter", "XXX, past day is $pastDays")
 
             var drawableID = 0
             when {

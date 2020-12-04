@@ -1,4 +1,5 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/areaRow"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -9,32 +10,34 @@
     effect on selection -->
 
     <TextView
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/image_group"
-        app:layout_constraintBottom_toBottomOf="@id/image_group"
+        app:layout_constraintTop_toTopOf="@id/timeGroup"
+        app:layout_constraintBottom_toBottomOf="@id/timeGroup"
         app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="5dp"
         android:textSize="25sp"
         android:textColor="@color/white"
         android:typeface="serif"
-        android:text="Living Room"
-        android:id="@+id/title">
+        android:text="Living Room">
     </TextView>
     <LinearLayout
-        android:id="@+id/image_group"
+        android:id="@+id/timeGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent">
        <ImageView
+           android:id="@+id/timeIV"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_gravity="center"
-           android:src="@drawable/ic_due_105"
-           android:id="@+id/time_count">
+           android:src="@drawable/ic_due_105">
        </ImageView>
        <TextView
+           android:id="@+id/timeTV"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            android:layout_gravity="center"

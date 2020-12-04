@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
@@ -14,12 +15,12 @@ import androidx.fragment.app.activityViewModels
 import com.utap.tidy.R
 import com.utap.tidy.ui.MainViewModel
 
-class NewNameFragment : Fragment() {
+class SelectTeamFragment : Fragment() {
     private val viewModel: MainViewModel by activityViewModels()
 
     companion object {
-        fun newInstance(): NewNameFragment {
-            return NewNameFragment()
+        fun newInstance(): SelectTeamFragment {
+            return SelectTeamFragment()
         }
     }
 
@@ -28,25 +29,30 @@ class NewNameFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val root = inflater.inflate(R.layout.fragment_new_name, container, false)
-        setTitle("New Name")
+        val root = inflater.inflate(R.layout.fragment_team_select, container, false)
+        setTitle("Join")
+        viewModel.deactivateSearchBarState()
+
+        root.findViewById<TextView>(R.id.teamName).text = viewModel.getTeamName()
 
         root.findViewById<ImageView>(R.id.checkBtn)
                 .setOnClickListener {
-                    val teamName = root.findViewById<EditText>(R.id.new_name).text.toString()
-                    if (teamName.isEmpty()) {
-                        Toast.makeText(context, "Your name is invalid", Toast.LENGTH_SHORT).show()
-                    } else {
-                        viewModel.initNewTeam(teamName)
-                        setTitle("Area")
-                        parentFragmentManager.popBackStack(viewModel.homeFragTag, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-                    }
+                    viewModel.joinTeam()
+                    setTitle("Area")
+                    parentFragmentManager.popBackStack(viewModel.homeFragTag, FragmentManager.POP_BACK_STACK_INCLUSIVE)
                 }
+
+        root.findViewById<ImageView>(R.id.closeBtn)
+            .setOnClickListener {
+                setTitle("Search")
+                viewModel.activateSearchBarState()
+                parentFragmentManager.popBackStack()
+            }
 
         // back button must have lifecycle
         val callback = object: OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                setTitle("New User")
+                setTitle("Search")
                 parentFragmentManager.popBackStack()
             }
         }
