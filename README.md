@@ -4,5 +4,4 @@
 
 An Android app to help users set up tailored plans for housework.
 
-<a href="https://www.youtube.com/watch?v=YrvzbYlhlOk&t=1s&ab_channel=%E6%97%B6%E6%80%9D%E8%8A%AB" target="demo link"><img src="<img src="images/Tidy_01.png"
-alt="IMAGE ALT TEXT HERE" width="354" height="737" border="10" /></a>
+[![Demo link](images/Tidy_01.png)](https://www.youtube.com/watch?v=YrvzbYlhlOk&t=1s&ab_channel=%E6%97%B6%E6%80%9D%E8%8A%AB)
